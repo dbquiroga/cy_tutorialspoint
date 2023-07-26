@@ -1,7 +1,7 @@
 Feature: Create Account and Login on the website
 
     Background:
-        Given User is on the website
+        Given User is on the website sign up
 
     Scenario: Simulate account creation
         When User simulates the account creation process

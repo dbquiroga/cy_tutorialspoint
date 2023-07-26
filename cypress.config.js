@@ -20,8 +20,9 @@ async function setupNodeEvents(on, config) {
 
 module.exports = defineConfig({
   env: {
-    baseUrl: "https://tutorialspoint.com/html/html_iframes.htm",
+    baseUrl: "https://www.tutorialspoint.com/html/html_iframes.htm",
     aboutusUrl: "https://tutorialspoint.com/about/index.htm",
+    signupUrl: "https://www.tutorialspoint.com/market/signup.jsp",
   },
   e2e: {
     setupNodeEvents,

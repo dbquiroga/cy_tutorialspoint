@@ -3,9 +3,7 @@ import { iframesPage } from "../../support/pages/iframes.page";
 const { baseUrl } = Cypress.env();
 
 Given("User is on the website", () => {
-  cy.visit(baseUrl, {
-    failOnStatusCode: false,
-  });
+  cy.visit(baseUrl);
 });
 
 When("User navigates to the content below {string}", (content) => {
