@@ -1,4 +1,4 @@
-Feature: Create Account and Login on the website
+Feature: Create Account
 
     Background:
         Given User is on the website sign up

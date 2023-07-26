@@ -28,18 +28,11 @@ When("User simulates the account creation process", () => {
     }
     cy.wait(2000);
     loginPage.get.signupBtn().click();
-    cy.url().should("contain", "/dashboard");
   });
 
-  //   loginPage.getEmailCode(email).then((verificationCode) => {
-  //     if (verificationCode) {
-  //       loginPage.get.verifyEmailInput().type(verificationCode);
-  //       loginPage.get.verifyEmailBtn().click();
-  //       // Continúa con el proceso de creación de cuenta y verifica que el registro se haya completado correctamente.
-  //     } else {
-  //       // Manejar el escenario de error, si no se pudo obtener el código de verificación.
-  //     }
-  //   });
+  Then("User should have a new account created", () => {
+    cy.url().should("contain", "/dashboard");
+  });
 });
 
 import { removeLogs } from "../../support/helper/RemoveLogs";

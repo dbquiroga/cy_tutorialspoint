@@ -24,6 +24,7 @@ module.exports = defineConfig({
     aboutusUrl: "https://tutorialspoint.com/about/index.htm",
     signupUrl: "https://www.tutorialspoint.com/market/signup.jsp",
     dashboardUrl: "https://www.tutorialspoint.com/market/student/dashboard.jsp",
+    loginUrl: "https://www.tutorialspoint.com/market/login.jsp",
   },
   e2e: {
     setupNodeEvents,
