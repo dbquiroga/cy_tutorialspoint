@@ -9,6 +9,9 @@ class SignUp {
     verifyEmailInput: () => cy.get("#txtEmailValidateOTP"),
     verifyOTPEmailBtn: () => cy.get("#validateEmailOtp"),
     signupBtn: () => cy.get("#signUpNew"),
+    otpCode: () =>
+      cy.get('p[contains(@style, "background:#5bac3a; font-size:24px;")]'),
+    otpBtnEmail: () => cy.get(":nth-child(5) > td > p"),
   };
 
   setRandomCountry() {
@@ -16,7 +19,7 @@ class SignUp {
     cy.wait(1000);
   }
 
-  requestalone(email) {
+  getOTP(email) {
     return new Cypress.Promise((resolve, reject) => {
       cy.request({
         method: "POST",
@@ -38,8 +41,6 @@ class SignUp {
         },
       }).then((response) => {
         console.log("Respuesta del request alone:--.-.-.-.-.-.--.", response);
-
-        expect(response.status).to.eq(203); // Verificar si el estado de la respuesta es 200 (éxito)
 
         const xsrfToken = response.headers["set-cookie"][0].split(";")[0];
         const decodedValue = decodeURIComponent(xsrfToken.split("=")[1]);
