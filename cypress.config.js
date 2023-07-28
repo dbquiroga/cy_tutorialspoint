@@ -2,11 +2,11 @@ const { defineConfig } = require("cypress");
 const createBundler = require("@bahmutov/cypress-esbuild-preprocessor");
 const preprocessor = require("@badeball/cypress-cucumber-preprocessor");
 const createEsbuildPlugin = require("@badeball/cypress-cucumber-preprocessor/esbuild");
+const allureWriter = require("@shelex/cypress-allure-plugin/writer");
 
 async function setupNodeEvents(on, config) {
   // This is required for the preprocessor to be able to generate JSON reports after each run, and more,
   await preprocessor.addCucumberPreprocessorPlugin(on, config);
-
   on(
     "file:preprocessor",
     createBundler({
@@ -21,10 +21,11 @@ async function setupNodeEvents(on, config) {
 module.exports = defineConfig({
   env: {
     baseUrl: "https://www.tutorialspoint.com/html/html_iframes.htm",
-    aboutusUrl: "https://tutorialspoint.com/about/index.htm",
+    aboutusUrl: "https://www.tutorialspoint.com/about/index.htm",
     signupUrl: "https://www.tutorialspoint.com/market/signup.jsp",
     dashboardUrl: "https://www.tutorialspoint.com/market/student/dashboard.jsp",
     loginUrl: "https://www.tutorialspoint.com/market/login.jsp",
+    MAILOSAUR_API_KEY: "VtpyO6ucJna4HVflpsY9l7xEuoghneBH",
   },
   e2e: {
     setupNodeEvents,

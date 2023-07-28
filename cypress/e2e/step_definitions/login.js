@@ -1,7 +1,5 @@
 import { Given, When, Then } from "@badeball/cypress-cucumber-preprocessor";
-
 import { loginPage } from "../../support/pages/login.page";
-import tests from "../../fixtures/loginUsers.json";
 const { loginUrl } = Cypress.env();
 
 Given("User is on the website login", () => {

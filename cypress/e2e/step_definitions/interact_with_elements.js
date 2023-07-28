@@ -1,5 +1,4 @@
-import { Given, When, Then } from "@badeball/cypress-cucumber-preprocessor";
-import { aboutusPage } from "../../support/pages/aboutus.page";
+import { Given, When } from "@badeball/cypress-cucumber-preprocessor";
 const { aboutusUrl } = Cypress.env();
 
 Given("User is on the website about us", () => {
@@ -7,29 +6,20 @@ Given("User is on the website about us", () => {
 });
 
 When("User retrieves all URLs on the page and checks their existence", () => {
-  aboutusPage.getLinkElements("a");
-  //.then(
-  // should('exist')
-  // elemento.atrr
-  //)
+  const regex = /^https?:\/\/.+$/; // Expresión regular para URLs que comiencen con http o https
+  cy.get("a").should(($a) => {
+    expect(regex.test($a.prop("href"))).to.be.true;
+  });
 });
 
 When("User lists all buttons on the page and checks their existence", () => {
-  aboutusPage.getBtnsElements(".btn");
-  //.then(
-  // should('exist')
-  // elemento.text
-  //)
+  cy.get(".btn").should("be.visible").and("be.enabled");
 });
 
 When(
   "User identifies and lists all text input fields and checks their existence",
   () => {
-    aboutusPage.getTextInputElements('[type="text"]');
-    //.then(
-    //should("exist");
-    // elemento.value
-    //)
+    cy.get("input").should("be.visible").and("be.enabled");
   }
 );
 

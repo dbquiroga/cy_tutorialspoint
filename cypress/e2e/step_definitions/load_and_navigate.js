@@ -7,12 +7,10 @@ Given("User is on the website", () => {
 });
 
 When("User navigates to the content below {string}", (content) => {
-  //cy.get(".prettyprint").contains(content);
   iframesPage.get.exampleFrame().contains(content);
 });
 
-When("User clicks on the {string} link", (link) => {
-  //cy.get(".nav-item").next().click();
+When("User clicks on the link about us", () => {
   iframesPage.get.navBtnAbout().click();
 });
 

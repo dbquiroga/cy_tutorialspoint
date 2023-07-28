@@ -9,6 +9,6 @@ Feature: Login
         When clicks on the login button
         Then the user should be logged in
         Examples:
-            | username          | password  |
-            | guabel1@gmail.com | Qwerty123 |
+            | username                               | password  |
+            | emailexample233@sr3o35ao.mailosaur.net | Qwerty123 |
 
