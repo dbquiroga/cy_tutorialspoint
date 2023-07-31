@@ -1,4 +1,9 @@
-import { Given, When, Then } from "@badeball/cypress-cucumber-preprocessor";
+import {
+  Given,
+  When,
+  Then,
+  And,
+} from "@badeball/cypress-cucumber-preprocessor";
 import { loginPage } from "../../support/pages/login.page";
 const { loginUrl } = Cypress.env();
 
@@ -6,16 +11,20 @@ Given("User is on the website login", () => {
   cy.visit(loginUrl);
 });
 
-When("the user enters the username {string}", (username) => {
-  loginPage.typeUsername(username);
-});
-When("the user enters the password {string}", (password) => {
-  loginPage.typePassword(password);
-});
+When(
+  "the user enters the username {string} and password {string}",
+  (username, password) => {
+    loginPage.typeUsername(username);
+    loginPage.typePassword(password);
+  }
+);
 When("clicks on the login button", () => {
+  cy.intercept("POST", "/market/login.php").as("loginRequest");
+
   loginPage.clickLoginBtn();
 });
 Then("the user should be logged in", () => {
-  cy.wait(2000);
+  cy.wait("@loginRequest");
+  //cy.get(".wrap_loader").should("not.exist", { timeout: 5000 });
   cy.url().should("include", "/dashboard");
 });

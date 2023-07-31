@@ -5,7 +5,6 @@ import { faker } from "@faker-js/faker";
 
 const numRandom = Cypress._.random(0, 1000);
 const serverDomain = "sr3o35ao.mailosaur.net";
-const serverId = "sr3o35ao";
 let email = `emailexample${numRandom}@${serverDomain}`;
 
 Given("User is on the website sign up", () => {
@@ -33,39 +32,30 @@ When("User types a password", () => {
 });
 
 When("User clicks on verify button", () => {
-  cy.wait(2000);
-  signupPage.get.verifyEmailBtn().click();
-  cy.wait(4000);
+  cy.intercept("POST", "/market/sendEmailOTP.php").as("sendEmailOTP");
+
+  signupPage.get.verifyEmailBtn().should("be.visible").click();
+  cy.wait("@sendEmailOTP");
 });
 
 When("User types OTP code", () => {
-  cy.mailosaurGetMessage(serverId, {
-    sentTo: email,
-  }).then((message) => {
-    // Obtener el código OTP del correo electrónico usando expresión regular
-    const otpCodeMatch =
-      /<p.*?style=".*?background:#5bac3a;.*?font-size:24px;.*?letter-spacing:4px;">(.*?)<\/p>/.exec(
-        message.html.body
-      );
-    if (otpCodeMatch && otpCodeMatch.length >= 2) {
-      const otpCode = otpCodeMatch[1];
-      cy.log("OTP Code:", otpCode);
-      signupPage.get.verifyEmailInput().type(otpCode);
-      cy.wait(2000);
-      signupPage.get.verifyOTPEmailBtn().click();
-    } else {
-      cy.log("No se pudo encontrar el código OTP en el correo electrónico.");
-    }
+  signupPage.getOTPCode(email).then((otpCode) => {
+    cy.intercept("POST", "/market/validateEmailPhoneOTP.php").as(
+      "validateEmailPhoneOTP"
+    );
+    signupPage.get.verifyEmailInput().type(otpCode);
+    signupPage.get.verifyOTPEmailBtn().click();
+    cy.wait("@validateEmailPhoneOTP");
   });
 });
 
 When("User clicks on sign up button", () => {
-  cy.wait(2000);
+  cy.intercept("POST", "/market/register.php").as("register");
   signupPage.get.signupBtn().click();
+  cy.wait("@register");
 });
 
 Then("User should have a new account created", () => {
-  cy.wait(5000);
   cy.url().should("contain", "/dashboard");
 });
 
