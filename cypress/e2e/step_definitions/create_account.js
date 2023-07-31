@@ -1,24 +1,19 @@
 import { Given, When, Then } from "@badeball/cypress-cucumber-preprocessor";
 const { signupUrl } = Cypress.env();
 import { signupPage } from "../../support/pages/signup.page";
+import { faker } from "@faker-js/faker";
 
 const numRandom = Cypress._.random(0, 1000);
 const serverDomain = "sr3o35ao.mailosaur.net";
 const serverId = "sr3o35ao";
 let email = `emailexample${numRandom}@${serverDomain}`;
 
-const phoneRandom =
-  "1" +
-  Math.floor(Math.random() * 100000000)
-    .toString()
-    .padStart(8, "0");
-
 Given("User is on the website sign up", () => {
   cy.visit(signupUrl);
 });
 
 When("User types a name", () => {
-  signupPage.get.nameInput().type("random");
+  signupPage.get.nameInput().type(faker.person.firstName());
 });
 
 When("User selects a country", () => {
@@ -26,7 +21,7 @@ When("User selects a country", () => {
 });
 
 When("User types a phone number", () => {
-  signupPage.get.phoneInput().type(phoneRandom);
+  signupPage.get.phoneInput().type(faker.phone.number());
 });
 
 When("User types a email", () => {
@@ -34,7 +29,7 @@ When("User types a email", () => {
 });
 
 When("User types a password", () => {
-  signupPage.get.passInput().type("Qwerty123");
+  signupPage.get.passInput().type(faker.internet.password({ length: 20 }));
 });
 
 When("User clicks on verify button", () => {
