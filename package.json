@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/dbquiroga/cy_tutorialspoint#readme",
   "devDependencies": {
+    "@faker-js/faker": "^8.0.2",
     "cypress": "^12.17.2",
     "cypress-mailosaur": "^2.13.0",
     "esbuild": "^0.17.15"
