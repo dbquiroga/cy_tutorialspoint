@@ -33,9 +33,9 @@ When("User types a password", () => {
 });
 
 When("User clicks on verify button", () => {
-  cy.wait(2000);
+  cy.intercept("POST", "/market/sendEmailOTP.php").as("sendEmailOTP");
   signupPage.get.verifyEmailBtn().click();
-  cy.wait(4000);
+  cy.wait("@sendEmailOTP");
 });
 
 When("User types OTP code", () => {
@@ -50,9 +50,12 @@ When("User types OTP code", () => {
     if (otpCodeMatch && otpCodeMatch.length >= 2) {
       const otpCode = otpCodeMatch[1];
       cy.log("OTP Code:", otpCode);
+      cy.intercept("POST", "/market/validateEmailPhoneOTP.php").as(
+        "validateEmailPhoneOTP"
+      );
       signupPage.get.verifyEmailInput().type(otpCode);
-      cy.wait(2000);
       signupPage.get.verifyOTPEmailBtn().click();
+      cy.wait("@validateEmailPhoneOTP");
     } else {
       cy.log("No se pudo encontrar el código OTP en el correo electrónico.");
     }
@@ -60,12 +63,12 @@ When("User types OTP code", () => {
 });
 
 When("User clicks on sign up button", () => {
-  cy.wait(2000);
+  cy.intercept("POST", "/market/register.php").as("register");
   signupPage.get.signupBtn().click();
+  cy.wait("@register");
 });
 
 Then("User should have a new account created", () => {
-  cy.wait(5000);
   cy.url().should("contain", "/dashboard");
 });
 

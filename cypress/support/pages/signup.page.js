@@ -16,7 +16,6 @@ class SignUp {
 
   setRandomCountry() {
     this.get.countryphoneInput().select(Cypress._.random(0, 7));
-    cy.wait(1000);
   }
 }
 
