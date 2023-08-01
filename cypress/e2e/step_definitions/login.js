@@ -25,6 +25,5 @@ When("clicks on the login button", () => {
 });
 Then("the user should be logged in", () => {
   cy.wait("@loginRequest");
-  //cy.get(".wrap_loader").should("not.exist", { timeout: 5000 });
   cy.url().should("include", "/dashboard");
 });

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="Mocha Tests" time="7.450" tests="0" failures="0">
+  <testsuite name="Root Suite" timestamp="2023-07-04T21:19:44" tests="0" file="cypress/e2e/Tests/Accounts/GX-22513-homeSauce.cy.js" time="7.446" failures="0">
+    <testcase name="22514 | TC1:login into to inventory page" time="1.871" classname=" 22514 | TC1:login into to inventory page">
+    </testcase>
+    <testcase name="22514 | TC2:should display locked out mesage" time="0.962" classname=" 22514 | TC2:should display locked out mesage">
+    </testcase>
+    <testcase name="22514 | TC3:should display incorrect username" time="0.806" classname=" 22514 | TC3:should display incorrect username">
+    </testcase>
+    <testcase name="22514 | TC4:should display incorrect password" time="1.080" classname=" 22514 | TC4:should display incorrect password">
+    </testcase>
+    <testcase name="22514 | TC5:should show username required" time="0.464" classname=" 22514 | TC5:should show username required">
+    </testcase>
+    <testcase name="22514 | TC6:should show password required" time="0.499" classname=" 22514 | TC6:should show password required">
+    </testcase>
+    <testcase name="22514 | TC7:should not authorize to go to inventory" time="0.356" classname=" 22514 | TC7:should not authorize to go to inventory">
+    </testcase>
+    <testcase name="22514 | TC8:should not authorize to go to cart" time="0.305" classname=" 22514 | TC8:should not authorize to go to cart">
+    </testcase>
+    <testcase name="22514 | TC9:should not authorize to go to checkout step one" time="0.395" classname=" 22514 | TC9:should not authorize to go to checkout step one">
+    </testcase>
+    <testcase name="22514 | TC10:should not authorize to go to checkout step two" time="0.325" classname=" 22514 | TC10:should not authorize to go to checkout step two">
+    </testcase>
+    <testcase name="22514 | TC11:should not authorize to go to checkout complete" time="0.307" classname=" 22514 | TC11:should not authorize to go to checkout complete">
+    </testcase>
+  </testsuite>
+</testsuites>
