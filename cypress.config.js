@@ -14,6 +14,19 @@ async function setupNodeEvents(on, config) {
     })
   );
 
+  // Custom tasks here
+  on("task", {
+    "email:check": async (args) => {
+      // Realiza lógica para verificar el correo en Gmail aquí
+      console.log(
+        "Verificando el correo en service de email con los siguientes argumentos:",
+        args
+      );
+      // Devuelve un resultado o valor si es necesario
+      return { success: true, message: "Correo verificado con éxito" };
+    },
+  });
+
   // Make sure to return the config object as it might have been modified by the plugin.
   return config;
 }
